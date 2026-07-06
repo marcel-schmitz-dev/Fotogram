@@ -9,25 +9,29 @@
     box-sizing: border-box;
 }
 
-main {
+body {
     display: flex;
     flex-direction: column;
-    flex: 1; /* Das ist der entscheidende Befehl! */
-    width: 100%;
-}
-
-body {
     min-height: 100vh;
     background-color: #06171E;
     color: white;
     font-family: 'Figtree', sans-serif;
+    margin: 0;
 }
 
-/* Header & Container für maximale Breite */
+
+main {
+    flex: 1; 
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+
 header {
     width: 100%;
     background-color: #09212A;
-    padding: 1.25rem 1rem; /* 20px 16px */
+    padding: 1.25rem 1rem; 
 }
 
 .header-container {
@@ -48,9 +52,9 @@ h1 {
 }
 
 .gallery {
-    flex: 1; /* Die Gallery dehnt sich aus */
+    flex: 1; 
     display: flex;
-    flex-wrap: wrap; /* WICHTIG: Damit die Fotos bei wenig Platz untereinander rutschen */
+    flex-wrap: wrap; 
     justify-content: center;
     gap: 20px;
     padding: 40px;
@@ -58,17 +62,120 @@ h1 {
 
 .gallery-title {
     max-width: 1170px;
-    margin: 5rem auto 0 auto; /* 80px oben, zentriert */
+    margin: 5rem auto 0 auto; 
     padding: 0 1rem;
     text-align: center;
-    /* Skaliert von 2.5rem (40px) bis 3.5rem (56px) */
+    
     font-size: clamp(2.5rem, 8vw, 3.5rem);
     font-weight: 800;
 }
 
+.thumbnail {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: transform 0.2s; 
+}
+
+.thumbnail:hover {
+    transform: scale(1.05);
+}
+
+.overlay {
+    position: fixed;
+    top: 0; left: 0;  width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.hidden { display: none; }
+
+.overlay-window {
+    font-family: 'Figtree', sans-serif;
+    background-color: #09212A;
+    padding: 56px 64px 56px 64px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 688px;
+    height: 674px;
+    position: relative;
+}
+
+.overlay-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 24px;
+    font-weight: 700;
+    color: white;
+}
+
+.close-icon {
+    width: 13px;
+    height: auto;
+    background-color: #09212A;
+    border: none;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+#largeImage {
+    width: 560px;
+    height: 374px;
+    object-fit: cover;
+    border: 2px solid #ffd700;
+    border-radius: 4px;
+    margin-top: 20px;
+    margin-bottom: auto;
+}
+
+.overlay-footer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 500;
+    gap: 40px;
+    margin-bottom: 20px;
+}
+
+.nav-btn {
+    background-color: transparent;
+    border: 1px solid #ff4d4d;
+    color: #ff4d4d;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.2s;
+}
+
+.nav-btn:hover {
+    background-color: #ff4d4d;
+    color: white;
+}
+
+#imageCounter {
+    font-weight: bold;
+}
+
 footer {
     width: 100%;
-    margin-top: auto; /* Schiebt den Footer bei Bedarf nach unten */
+    margin-top: auto; 
     background-color: #09212A;
     padding: 2.5rem 1rem;
     display: flex;
@@ -90,11 +197,11 @@ footer {
 
 h3 {
     margin: 0;
-    font-size: 24px;     /* Angepasst, damit es nicht zu riesig ist */
-    line-height: 1.2;    /* Sorgt dafür, dass die Zeilenabstände passen */
+    font-size: 24px;     
+    line-height: 1.2;    
 }
 
 p {
-    font-size: 16px;     /* Meist kleiner als die Überschrift */
-    opacity: 0.8;        /* Etwas dezenter für das Copyright */
+    font-size: 16px;     
+    opacity: 0.8;        
 }

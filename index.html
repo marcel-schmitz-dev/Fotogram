@@ -29,6 +29,27 @@
             <div class="gallery" id="gallery"></div>
         </main>
 
+        <div id="overlay" class="overlay hidden" onclick="closeOverlay()">
+            <div class="overlay-window" onclick="event.stopPropagation()">
+                <div class="overlay-header">
+                    <span id="imageTitle">Alaska-810433_1280</span>
+                    <button class="close-icon" onclick="closeOverlay()">
+                        ×
+                    </button>
+                </div>
+                <img id="largeImage" src="" alt="Großansicht" />
+                <div class="overlay-footer">
+                    <button class="nav-btn" onclick="prevImage(event)">
+                        ←
+                    </button>
+                    <span id="imageCounter">1/12</span>
+                    <button class="nav-btn" onclick="nextImage(event)">
+                        →
+                    </button>
+                </div>
+            </div>
+        </div>
+
         <footer>
             <div class="footer-top">
                 <img
