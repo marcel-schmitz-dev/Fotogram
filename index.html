@@ -14,7 +14,7 @@
 
     <body>
         <header>
-            <div class="header-container">
+            <div class="content-wrapper header-container">
                 <img
                     src="./assets/icon/farb_icon.png"
                     alt="Logo"
@@ -25,8 +25,10 @@
         </header>
 
         <main>
-            <h2 class="gallery-title">Your personal photo album</h2>
-            <div class="gallery" id="gallery"></div>
+            <div class="content-wrapper">
+                <h2 class="gallery-title">Your personal photo album</h2>
+                <div class="gallery" id="gallery"></div>
+            </div>
         </main>
 
         <div id="overlay" class="overlay hidden" onclick="closeOverlay()">
@@ -51,16 +53,20 @@
         </div>
 
         <footer>
-            <div class="footer-top">
-                <img
-                    src="./assets/icon/Icon.png"
-                    alt="Footer-logo"
-                    class="footer-logo"
-                />
-                <h3>Developer<br />Akademie</h3>
+            <div class="content-wrapper">
+                <div class="footer-top">
+                    <img
+                        src="./assets/icon/Icon.png"
+                        alt="Footer-logo"
+                        class="footer-logo"
+                    />
+                    <h3>Developer<br />Akademie</h3>
+                </div>
             </div>
 
-            <p>&copy; 2026 Developer Akademie GmbH</p>
+            <div class="content-wrapper">
+                <p>&copy; 2026 Developer Akademie GmbH</p>
+            </div>
         </footer>
 
         <script src="script.js"></script>

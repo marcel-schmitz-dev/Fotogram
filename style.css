@@ -33,17 +33,20 @@ header {
     padding: 1.25rem 1rem; 
 }
 
+
 .header-container {
     max-width: 1170px;
     margin: 0 auto;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    align-items: center; 
+    justify-content: center; 
     gap: 9px;
 }
 
 @media (min-width: 768px) {
-    .header-container { justify-content: flex-start; }
+    .header-container { 
+        justify-content: flex-start; }
+    
 }
 
 .logo {
@@ -56,12 +59,11 @@ h1 {
 }
 
 .gallery {
+    max-width: 1200px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 20px;
-    padding: 2rem 1rem;
-    max-width: 1440px;
     margin: 0 auto;
 }
 
@@ -92,26 +94,27 @@ h1 {
     position: fixed;
     top: 0; left: 0; 
     width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.9); /* Hintergrundfarbe für die komplette Ansicht */
+    background: rgba(0, 0, 0, 0.9); 
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 10px; /* Damit das Fenster auf Handys nicht am Rand klebt */
+    padding: 10px; 
     z-index: 1000;
 }
 
 .hidden { display: none; }
 
 .overlay-window {
-    background-color: #09212A;
-    padding: 24px; /* Etwas kompakter für mobile */
+    background-color: #06171E;
     border-radius: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100%;      /* Nimmt auf Handy den Platz ein */
-    max-width: 688px; /* Bleibt auf Desktop bei deiner Wunschgröße */
-    max-height: 90vh; /* Verhindert, dass es zu lang wird */
+    width: 90%;
+    max-width: 688px;
+    max-height: 85vh;
+    
+    padding: clamp(32px, 5vw, 56px) clamp(16px, 5vw, 64px); 
     position: relative;
 }
 
@@ -137,13 +140,12 @@ h1 {
 
 #largeImage {
     width: 100%;
-    /* Entferne oder erhöhe das 50vh, um das Bild im Fenster wachsen zu lassen */
-    flex-grow: 1;     /* Bild nimmt allen verfügbaren Platz zwischen Header und Footer ein */
-    max-height: 60vh; /* Etwas größer als vorher */
+    flex-grow: 1;    
+    max-height: 60vh; 
     object-fit: contain;
-    border: 2px solid #ffd700;
     border-radius: 4px;
     margin: 20px 0;
+    
 }
 
 .overlay-footer {
@@ -188,11 +190,13 @@ h1 {
 footer {
     width: 100%;
     margin-top: auto;
-    background-color: var(--dark-blue);
+    background-color: #09212A;
     padding: 2.5rem 1rem;
     display: flex;
     flex-direction: column;
     align-items: center;
+    border-top-left-radius: 35%;
+    border-top-right-radius: 35%;
 }
 .footer-top {
     display: flex;
