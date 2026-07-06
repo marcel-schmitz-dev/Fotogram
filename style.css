@@ -1,0 +1,100 @@
+:root {
+    /* Basis-Schriftgröße für rem-Berechnungen */
+    font-size: 16px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    flex: 1; /* Das ist der entscheidende Befehl! */
+    width: 100%;
+}
+
+body {
+    min-height: 100vh;
+    background-color: #06171E;
+    color: white;
+    font-family: 'Figtree', sans-serif;
+}
+
+/* Header & Container für maximale Breite */
+header {
+    width: 100%;
+    background-color: #09212A;
+    padding: 1.25rem 1rem; /* 20px 16px */
+}
+
+.header-container {
+    max-width: 1170px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+}
+
+.logo {
+    height: 40px;
+}
+
+h1 {
+    margin: 0;
+    font-size: clamp(2rem, 5vw, 2.5rem);
+}
+
+.gallery {
+    flex: 1; /* Die Gallery dehnt sich aus */
+    display: flex;
+    flex-wrap: wrap; /* WICHTIG: Damit die Fotos bei wenig Platz untereinander rutschen */
+    justify-content: center;
+    gap: 20px;
+    padding: 40px;
+}
+
+.gallery-title {
+    max-width: 1170px;
+    margin: 5rem auto 0 auto; /* 80px oben, zentriert */
+    padding: 0 1rem;
+    text-align: center;
+    /* Skaliert von 2.5rem (40px) bis 3.5rem (56px) */
+    font-size: clamp(2.5rem, 8vw, 3.5rem);
+    font-weight: 800;
+}
+
+footer {
+    width: 100%;
+    margin-top: auto; /* Schiebt den Footer bei Bedarf nach unten */
+    background-color: #09212A;
+    padding: 2.5rem 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.footer-top {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 1.25rem;
+}
+
+.footer-logo {
+    width: 37px;
+    height: 30px;
+}
+
+h3 {
+    margin: 0;
+    font-size: 24px;     /* Angepasst, damit es nicht zu riesig ist */
+    line-height: 1.2;    /* Sorgt dafür, dass die Zeilenabstände passen */
+}
+
+p {
+    font-size: 16px;     /* Meist kleiner als die Überschrift */
+    opacity: 0.8;        /* Etwas dezenter für das Copyright */
+}
