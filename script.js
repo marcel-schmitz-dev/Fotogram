@@ -1,8 +1,8 @@
 const images = [
-    "assets/img/img1.png", "assets/img/img2.png", "assets/img/img3.png",
-    "assets/img/img4.png", "assets/img/img5.png", "assets/img/img6.png",
-    "assets/img/img7.png", "assets/img/img8.png", "assets/img/img9.png",
-    "assets/img/img10.png", "assets/img/img11.png", "assets/img/img12.png"
+    "assets/img/colmar.png", "assets/img/colmar1.png", "assets/img/colmar2.png",
+    "assets/img/colmar3.png", "assets/img/dolomiten.png", "assets/img/dolomiten1.png",
+    "assets/img/dolomiten2.png", "assets/img/dolomiten3.png", "assets/img/karibik.png",
+    "assets/img/karibik1.png", "assets/img/karibik2.png", "assets/img/karibik3.png"
 ];
 
 let currentIndex = 0;
