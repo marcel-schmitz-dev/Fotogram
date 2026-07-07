@@ -9,30 +9,35 @@ let currentIndex = 0;
 const gallery = document.getElementById('gallery');
 const overlay = document.getElementById('overlay');
 const largeImage = document.getElementById('largeImage');
-const counter = document.getElementById('imageCounter'); // NEU: Referenz auf Counter
+const counter = document.getElementById('imageCounter');
+const imageTitle = document.getElementById('imageTitle');
 
-// 1. Bilder rendern
-images.forEach((src, index) => {
-    const img = document.createElement('img');
-    img.src = src;
-    img.className = 'thumbnail';
-    img.onclick = () => openOverlay(index);
-    gallery.appendChild(img);
-});
 
-// NEU: Zentralisierte Funktion für Bild & Counter
+function initGallery() {
+    gallery.innerHTML = images.map((src, index) => {
+
+        const fileName = src.split('/').pop().split('.')[0];
+        const altText = fileName.replace('_', ' ');
+
+        return `<img src="${src}" class="thumbnail" alt="Fotografisches Werk: ${altText}" onclick="openOverlay(${index})">`;
+    }).join('');
+}
+
+
+initGallery();
+
 function updateLargeImage() {
     largeImage.src = images[currentIndex];
     counter.innerText = `${currentIndex + 1} / ${images.length}`;
     
-    // Den Namen aus dem Dateipfad extrahieren (z.B. "img1" aus "assets/img/img1.png")
+    
     const fileName = images[currentIndex].split('/').pop().split('.')[0];
-    document.getElementById('imageTitle').innerText = fileName;
+    imageTitle.innerText = fileName.replace('_', ' ');
 }
 
 function openOverlay(index) {
     currentIndex = index;
-    updateLargeImage(); // Funktion aufrufen
+    updateLargeImage(); 
     overlay.classList.remove('hidden');
 }
 
@@ -40,9 +45,8 @@ function closeOverlay() {
     overlay.classList.add('hidden');
 }
 
-// 2. Navigation
 function nextImage(event) {
-    if (event) event.stopPropagation(); // Verhindert Schließen bei Klick auf Button
+    if (event) event.stopPropagation(); 
     currentIndex = (currentIndex + 1) % images.length;
     updateLargeImage();
 }
@@ -53,10 +57,28 @@ function prevImage(event) {
     updateLargeImage();
 }
 
-// 3. Tastatur-Events
+
 document.addEventListener('keydown', (e) => {
-    if (overlay.classList.contains('hidden')) return; // Nur wenn offen
+    if (overlay.classList.contains('hidden')) return; 
     if (e.key === 'Escape') closeOverlay();
     if (e.key === 'ArrowRight') nextImage();
     if (e.key === 'ArrowLeft') prevImage();
 });
+
+
+let touchStartX = 0;
+let touchEndX = 0;
+
+largeImage.addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+});
+
+largeImage.addEventListener('touchend', (e) => {
+    touchEndX = e.changedTouches[0].screenX;
+    handleGesture();
+});
+
+function handleGesture() {
+    if (touchEndX < touchStartX - 50) nextImage();
+    if (touchEndX > touchStartX + 50) prevImage();
+}
