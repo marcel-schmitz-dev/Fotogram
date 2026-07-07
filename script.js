@@ -39,6 +39,8 @@ function openOverlay(index) {
     currentIndex = index;
     updateLargeImage(); 
     overlay.classList.remove('hidden');
+
+    document.getElementById('nextBtn').focus();
 }
 
 function closeOverlay() {
