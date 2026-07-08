@@ -47,10 +47,12 @@ function updateLargeImage() {
 
 function openOverlay(index) {
     currentIndex = index;
-    updateLargeImage(); 
+    updateLargeImage();
     overlay.classList.remove('hidden');
-
-    document.getElementById('nextBtn').focus();
+    
+    setTimeout(() => {
+        document.getElementById('nextBtn').focus();
+    }, 50);
 }
 
 function closeOverlay() {
