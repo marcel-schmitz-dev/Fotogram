@@ -20,37 +20,41 @@ const largeImage = document.getElementById('largeImage');
 const counter = document.getElementById('imageCounter');
 const imageTitle = document.getElementById('imageTitle');
 
+/**
+ * Hilfsfunktion: Wandelt Dateiname in lesbaren Text um
+ */
+function getAltText(src) {
+    const fileName = src.split('/').pop().split('.')[0];
+    return fileName.replace(/-/g, ' '); // Ersetzt alle Bindestriche durch Leerzeichen
+}
 
 function initGallery() {
     gallery.innerHTML = images.map((src, index) => {
-
-        const fileName = src.split('/').pop().split('.')[0];
-        const altText = fileName.replace('_', ' ');
-
-        return `<img src="${src}" class="thumbnail" alt="Fotografisches Werk: ${altText}" onclick="openOverlay(${index})">`;
+        const altText = getAltText(src);
+        return `<img src="${src}" class="thumbnail" alt="Fotografisches Werk: ${altText}" onclick="openOverlay(${index})" tabindex="0">`;
     }).join('');
 }
-
 
 initGallery();
 
 function updateLargeImage() {
     largeImage.src = images[currentIndex];
+    const altText = getAltText(images[currentIndex]);
     
-    const fileName = images[currentIndex].split('/').pop().split('.')[0];
-    const altText = fileName.replace('_', ' ');
     largeImage.alt = `Fotografisches Werk: ${altText}`;
-    
     counter.innerText = `${currentIndex + 1} / ${images.length}`;
     imageTitle.innerText = altText;
 }
 
 function openOverlay(index) {
     currentIndex = index;
-    updateLargeImage(); 
+    updateLargeImage();
     overlay.classList.remove('hidden');
 
-    document.getElementById('nextBtn').focus();
+    // Fokus-Management: Kurze Verzögerung, um das DOM-Rendering abzuwarten
+    setTimeout(() => {
+        document.getElementById('prevBtn').focus();
+    }, 50);
 }
 
 function closeOverlay() {
@@ -58,7 +62,7 @@ function closeOverlay() {
 }
 
 function nextImage(event) {
-    if (event) event.stopPropagation(); 
+    if (event) event.stopPropagation();
     currentIndex = (currentIndex + 1) % images.length;
     updateLargeImage();
 }
@@ -69,29 +73,26 @@ function prevImage(event) {
     updateLargeImage();
 }
 
-
+// Zentrale Tastatur-Steuerung
 document.addEventListener('keydown', (e) => {
-    
     if (overlay.classList.contains('hidden')) return;
 
-    
     if (e.key === 'Escape') closeOverlay();
     if (e.key === 'ArrowRight') nextImage();
     if (e.key === 'ArrowLeft') prevImage();
 
-    
+    // Focus Trap für Barrierefreiheit
     if (e.key === 'Tab') {
-        
-        const focusableElements = overlay.querySelectorAll('button');
-        const firstElement = focusableElements[0]; 
-        const lastElement = focusableElements[focusableElements.length - 1]; 
+        const focusableElements = overlay.querySelectorAll('button[tabindex="0"]');
+        const firstElement = focusableElements[0];
+        const lastElement = focusableElements[focusableElements.length - 1];
 
-        if (e.shiftKey) { 
+        if (e.shiftKey) {
             if (document.activeElement === firstElement) {
                 e.preventDefault();
                 lastElement.focus();
             }
-        } else { 
+        } else {
             if (document.activeElement === lastElement) {
                 e.preventDefault();
                 firstElement.focus();
