@@ -1,16 +1,16 @@
 const images = [
-    "assets/img/colmar-fachwerkhaus-gasse.png",
-    "assets/img/colmar-gelbes-haus-hof.png",
-    "assets/img/colmar-kanal-stadtansicht.png",
-    "assets/img/colmar-altstadt-fassaden.png",
+    "assets/img/colmar-fachwerkhaus.png",
+    "assets/img/colmar-gelbes-haus.png",
+    "assets/img/colmar-kanal.png",
+    "assets/img/colmar-altstadt.png",
     "assets/img/dolomiten-see-spiegelung.png",
-    "assets/img/dolomiten-berglandschaft-kristallsee.png",
+    "assets/img/dolomiten-berglandschaft.png",
     "assets/img/dolomiten-winter-gebirge.png",
-    "assets/img/dolomiten-sonnenuntergang-see.png",
+    "assets/img/dolomiten-sonnenuntergang.png",
     "assets/img/karibik-strand-palmen.png",
-    "assets/img/karibik-palmenwedel-nahaufnahme.png",
-    "assets/img/karibik-tuerkisblaues-wasser.png",
-    "assets/img/karibik-sonnenuntergang-strand.png"
+    "assets/img/karibik-palmenwedel.png",
+    "assets/img/karibik-blaues-wasser.png",
+    "assets/img/karibik-sonnenuntergang.png"
 ];
 
 let currentIndex = 0;
@@ -20,12 +20,9 @@ const largeImage = document.getElementById('largeImage');
 const counter = document.getElementById('imageCounter');
 const imageTitle = document.getElementById('imageTitle');
 
-/**
- * Hilfsfunktion: Wandelt Dateiname in lesbaren Text um
- */
 function getAltText(src) {
     const fileName = src.split('/').pop().split('.')[0];
-    return fileName.replace(/-/g, ' '); // Ersetzt alle Bindestriche durch Leerzeichen
+    return fileName.replace(/-/g, ' '); 
 }
 
 function initGallery() {
@@ -51,7 +48,6 @@ function openOverlay(index) {
     updateLargeImage();
     overlay.classList.remove('hidden');
 
-    // Fokus-Management: Kurze Verzögerung, um das DOM-Rendering abzuwarten
     setTimeout(() => {
         document.getElementById('prevBtn').focus();
     }, 50);
@@ -73,7 +69,6 @@ function prevImage(event) {
     updateLargeImage();
 }
 
-// Zentrale Tastatur-Steuerung
 document.addEventListener('keydown', (e) => {
     if (overlay.classList.contains('hidden')) return;
 
@@ -81,7 +76,6 @@ document.addEventListener('keydown', (e) => {
     if (e.key === 'ArrowRight') nextImage();
     if (e.key === 'ArrowLeft') prevImage();
 
-    // Focus Trap für Barrierefreiheit
     if (e.key === 'Tab') {
         const focusableElements = overlay.querySelectorAll('button[tabindex="0"]');
         const firstElement = focusableElements[0];
