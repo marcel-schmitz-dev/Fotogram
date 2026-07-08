@@ -37,7 +37,6 @@ initGallery();
 function updateLargeImage() {
     largeImage.src = images[currentIndex];
     const altText = getAltText(images[currentIndex]);
-    
     largeImage.alt = `Fotografisches Werk: ${altText}`;
     counter.innerText = `${currentIndex + 1} / ${images.length}`;
     imageTitle.innerText = altText;
@@ -47,10 +46,7 @@ function openOverlay(index) {
     currentIndex = index;
     updateLargeImage();
     overlay.classList.remove('hidden');
-
-    setTimeout(() => {
-        document.getElementById('prevBtn').focus();
-    }, 50);
+    setTimeout(() => document.getElementById('prevBtn').focus(), 50);
 }
 
 function closeOverlay() {
@@ -69,28 +65,17 @@ function prevImage(event) {
     updateLargeImage();
 }
 
+function handleTabNavigation(e) {
+    const focusable = overlay.querySelectorAll('button[tabindex="0"]');
+    const first = focusable[0], last = focusable[focusable.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+}
+
 document.addEventListener('keydown', (e) => {
     if (overlay.classList.contains('hidden')) return;
-
     if (e.key === 'Escape') closeOverlay();
     if (e.key === 'ArrowRight') nextImage();
     if (e.key === 'ArrowLeft') prevImage();
-
-    if (e.key === 'Tab') {
-        const focusableElements = overlay.querySelectorAll('button[tabindex="0"]');
-        const firstElement = focusableElements[0];
-        const lastElement = focusableElements[focusableElements.length - 1];
-
-        if (e.shiftKey) {
-            if (document.activeElement === firstElement) {
-                e.preventDefault();
-                lastElement.focus();
-            }
-        } else {
-            if (document.activeElement === lastElement) {
-                e.preventDefault();
-                firstElement.focus();
-            }
-        }
-    }
+    if (e.key === 'Tab') handleTabNavigation(e);
 });
