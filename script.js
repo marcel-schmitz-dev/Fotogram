@@ -1,8 +1,16 @@
 const images = [
-    "assets/img/colmar.png", "assets/img/colmar1.png", "assets/img/colmar2.png",
-    "assets/img/colmar3.png", "assets/img/dolomiten.png", "assets/img/dolomiten1.png",
-    "assets/img/dolomiten2.png", "assets/img/dolomiten3.png", "assets/img/karibik.png",
-    "assets/img/karibik1.png", "assets/img/karibik2.png", "assets/img/karibik3.png"
+    "assets/img/colmar-fachwerkhaus-gasse.png",
+    "assets/img/colmar-gelbes-haus-hof.png",
+    "assets/img/colmar-kanal-stadtansicht.png",
+    "assets/img/colmar-altstadt-fassaden.png",
+    "assets/img/dolomiten-see-spiegelung.png",
+    "assets/img/dolomiten-berglandschaft-kristallsee.png",
+    "assets/img/dolomiten-winter-gebirge.png",
+    "assets/img/dolomiten-sonnenuntergang-see.png",
+    "assets/img/karibik-strand-palmen.png",
+    "assets/img/karibik-palmenwedel-nahaufnahme.png",
+    "assets/img/karibik-tuerkisblaues-wasser.png",
+    "assets/img/karibik-sonnenuntergang-strand.png"
 ];
 
 let currentIndex = 0;
@@ -28,11 +36,13 @@ initGallery();
 
 function updateLargeImage() {
     largeImage.src = images[currentIndex];
-    counter.innerText = `${currentIndex + 1} / ${images.length}`;
-    
     
     const fileName = images[currentIndex].split('/').pop().split('.')[0];
-    imageTitle.innerText = fileName.replace('_', ' ');
+    const altText = fileName.replace('_', ' ');
+    largeImage.alt = `Fotografisches Werk: ${altText}`;
+    
+    counter.innerText = `${currentIndex + 1} / ${images.length}`;
+    imageTitle.innerText = altText;
 }
 
 function openOverlay(index) {
