@@ -47,12 +47,10 @@ function updateLargeImage() {
 
 function openOverlay(index) {
     currentIndex = index;
-    updateLargeImage();
+    updateLargeImage(); 
     overlay.classList.remove('hidden');
-    
-    setTimeout(() => {
-        document.getElementById('nextBtn').focus();
-    }, 50);
+
+    document.getElementById('nextBtn').focus();
 }
 
 function closeOverlay() {
@@ -73,26 +71,31 @@ function prevImage(event) {
 
 
 document.addEventListener('keydown', (e) => {
-    if (overlay.classList.contains('hidden')) return; 
+    
+    if (overlay.classList.contains('hidden')) return;
+
+    
     if (e.key === 'Escape') closeOverlay();
     if (e.key === 'ArrowRight') nextImage();
     if (e.key === 'ArrowLeft') prevImage();
+
+    
+    if (e.key === 'Tab') {
+        
+        const focusableElements = overlay.querySelectorAll('button');
+        const firstElement = focusableElements[0]; 
+        const lastElement = focusableElements[focusableElements.length - 1]; 
+
+        if (e.shiftKey) { 
+            if (document.activeElement === firstElement) {
+                e.preventDefault();
+                lastElement.focus();
+            }
+        } else { 
+            if (document.activeElement === lastElement) {
+                e.preventDefault();
+                firstElement.focus();
+            }
+        }
+    }
 });
-
-
-let touchStartX = 0;
-let touchEndX = 0;
-
-largeImage.addEventListener('touchstart', (e) => {
-    touchStartX = e.changedTouches[0].screenX;
-});
-
-largeImage.addEventListener('touchend', (e) => {
-    touchEndX = e.changedTouches[0].screenX;
-    handleGesture();
-});
-
-function handleGesture() {
-    if (touchEndX < touchStartX - 50) nextImage();
-    if (touchEndX > touchStartX + 50) prevImage();
-}

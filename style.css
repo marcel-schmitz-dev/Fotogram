@@ -183,6 +183,15 @@ h2 {
     flex-shrink: 0;
 }
 
+.nav-btn {
+    pointer-events: auto; 
+    cursor: pointer;
+}
+
+.overlay-window {
+    pointer-events: auto; 
+}
+
 .nav-btn:focus,
 .nav-btn:hover {
     border-color: #ff4d4d; 
